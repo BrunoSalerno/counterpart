@@ -1,8 +1,6 @@
 'use strict';
 
 var extend  = require('extend');
-var isArray = require('util').isArray;
-var isDate  = require('util').isDate;
 var sprintf = require("sprintf-js").sprintf;
 var events  = require('events');
 var except  = require('except');
@@ -10,6 +8,25 @@ var except  = require('except');
 var strftime = require('./strftime');
 
 var translationScope = 'counterpart';
+
+
+// -- Functions copied from util to remove dependency
+function objectToString(o) {
+  return Object.prototype.toString.call(o);
+}
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+
+function isArray(ar) {
+  return Array.isArray(ar);
+}
+
+function isDate(d) {
+  return isObject(d) && objectToString(d) === '[object Date]';
+}
+// --
 
 function isString(val) {
   return typeof val === 'string' || Object.prototype.toString.call(val) === '[object String]';
